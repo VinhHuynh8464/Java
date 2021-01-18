@@ -28,17 +28,19 @@ public class PersonManager {
 
     public void add() {
         Scanner sc = new Scanner(System.in);
+        listPerson[currentIndex] = new Person();
         System.out.println("\nInput code: ");
         listPerson[currentIndex].setCode(sc.nextLine());
         System.out.println("\nInput name: ");
         listPerson[currentIndex].setName(sc.nextLine());
         System.out.println("\nInput age: ");
         listPerson[currentIndex].setAge(sc.nextInt());
+        currentIndex++;
     }
 
     public void remove(String code) {
         for (int i = 0; i < currentIndex; i++) {
-            if (listPerson[i].getCode() == code) {
+            if (listPerson[i].getCode().equals(code)) {
                 for (int j = i; j < currentIndex; j++) {
                     listPerson[j] = listPerson[j + 1];
                 }
@@ -50,7 +52,7 @@ public class PersonManager {
 
     public void update(String code) {
         for (int i = 0; i < currentIndex; i++) {
-            if (listPerson[i].getCode() == code) {
+            if (listPerson[i].getCode().equals(code)) {
                 Scanner sc = new Scanner(System.in);
                 System.out.println("\nInput new name: ");
                 listPerson[i].setName(sc.nextLine());
@@ -70,7 +72,7 @@ public class PersonManager {
     public void listAndSort() {
         for (int i = 0; i < currentIndex - 1; i++) {
             for (int j = i + 1; j < currentIndex; j++) {
-                if (listPerson[i].getAge() < listPerson[j].getAge()) {
+                if (listPerson[i].getAge() > listPerson[j].getAge()) {
                     int age = listPerson[i].getAge();
                     listPerson[i].setAge(listPerson[j].getAge());
                     listPerson[j].setAge(age);
